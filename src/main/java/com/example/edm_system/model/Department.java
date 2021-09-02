@@ -3,10 +3,9 @@ package com.example.edm_system.model;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 //2.	Подразделение
 @Entity
@@ -16,8 +15,19 @@ public class Department {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nameDepartment;
-    private String contactData;
-    private String manager;
+    private String nameDepartment; //a.	наименование подразделения
+    private String contactData;    //b.	контактные данные;
+    private String manager;        // c.	руководитель.
 
+    @ManyToOne(fetch = FetchType.EAGER,cascade = {CascadeType.MERGE})
+    @JoinColumn(name = "organization_id")
+    private Organization organization;
+
+    @OneToMany(fetch = FetchType.EAGER,cascade = {CascadeType.MERGE},
+            mappedBy = "department")
+    private Set<Employee> employee = new HashSet<>();
+
+    public void setEmployee(Employee employee) {
+        this.employee.add(employee);
+    }
 }

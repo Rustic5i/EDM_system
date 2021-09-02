@@ -4,7 +4,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
+//1.	Организация
 @Entity
 @Data
 @NoArgsConstructor
@@ -13,17 +16,16 @@ public class Organization {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nameOrganization;
-    private String physicalAddress;
-    private String juridicalAddress;
-    private String manager;
+    private String nameOrganization; //a.	наименование организации
+    private String physicalAddress;  //b.	физический адрес
+    private String juridicalAddress; //c.	юридический адрес;
+    private String manager;          //d.	руководитель.
 
-    public Long getId() {
-        return id;
+    @OneToMany(fetch = FetchType.EAGER,
+            mappedBy = "organization") // указываем где нужно искать связь
+    private Set<Department> department  = new HashSet<>();
+
+    public void setDepartment(Department department) {
+        this.department.add(department);
     }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
 }
