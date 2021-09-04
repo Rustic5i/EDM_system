@@ -1,15 +1,17 @@
 package com.example.edm_system.model;
 
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 //2.	Подразделение
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 public class Department {
     @Id
@@ -19,15 +21,29 @@ public class Department {
     private String contactData;    //b.	контактные данные;
     private String manager;        // c.	руководитель.
 
-    @ManyToOne(fetch = FetchType.EAGER,cascade = {CascadeType.MERGE})
-    @JoinColumn(name = "organization_id")
-    private Organization organization;
-
-    @OneToMany(fetch = FetchType.EAGER,cascade = {CascadeType.MERGE},
-            mappedBy = "department")
-    private Set<Employee> employee = new HashSet<>();
+    @OneToMany(fetch = FetchType.EAGER,cascade = {CascadeType.MERGE})
+    @JoinColumn(name = "department_id")
+    private List<Employee> employee = new ArrayList<>();
 
     public void setEmployee(Employee employee) {
         this.employee.add(employee);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Department that = (Department) o;
+        return Objects.equals(nameDepartment, that.nameDepartment) && Objects.equals(contactData, that.contactData) && Objects.equals(manager, that.manager);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nameDepartment, contactData, manager);
+    }
+
+    @Override
+    public String toString() {
+        return "Department" + nameDepartment;
     }
 }

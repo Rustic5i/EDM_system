@@ -1,13 +1,15 @@
 package com.example.edm_system.model;
 
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
 //4.	Поручение
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 public class Task {
     @Id
@@ -26,4 +28,9 @@ public class Task {
     @ManyToOne
     @JoinColumn(name = "authorTask_id")
     private Employee authorTask; // b.	автор поручения;
+
+    @Override
+    public String toString() {
+        return "Task: " + objectTask;
+    }
 }

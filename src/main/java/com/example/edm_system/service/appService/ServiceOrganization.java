@@ -6,6 +6,8 @@ import com.example.edm_system.service.Iservice.IOrganizatioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ServiceOrganization implements IOrganizatioService {
 
@@ -39,5 +41,10 @@ public class ServiceOrganization implements IOrganizatioService {
     @Override
     public void updateOrganization(Organization updateOrganization) {
         repository.save(updateOrganization);
+    }
+
+    @Override
+    public List<Organization> getAllOrganization() {
+        return repository.findAll();
     }
 }

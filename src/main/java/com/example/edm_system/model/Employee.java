@@ -1,14 +1,13 @@
 package com.example.edm_system.model;
 
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-
+import lombok.Setter;
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 public class Employee {
     @Id
@@ -19,25 +18,8 @@ public class Employee {
     private String patronymic;// c.	отчество
     private String post;  //d.	должность
 
-    @ManyToOne
-    @JoinColumn(name = "department_id")
-    private Department department;
-
-    @OneToMany(fetch = FetchType.EAGER,
-            mappedBy = "authorTask") //автор поручения;
-    private List<Task> authorTaskList = new ArrayList<>();
-
-    @OneToMany(fetch = FetchType.EAGER,
-            mappedBy = "executorsTask") ////исполнители поручения
-    private List<Task> executorsTaskList = new ArrayList<>();
-
-
-
-    public void setAuthorTaskList(Task authorTaskList) {
-        this.authorTaskList.add(authorTaskList);
-    }
-
-    public void setExecutorsTaskList(Task executorsTaskList) {
-        this.executorsTaskList.add(executorsTaskList);
+    @Override
+    public String toString() {
+        return "Employee: " + name +" " + surname;
     }
 }
