@@ -16,8 +16,6 @@ import java.util.List;
 public class RESTDepartment {
 
     private IServiceDepartment service;
-    @Autowired
-    private RepositoryDepartment repository;
 
     @Autowired
     public RESTDepartment(IServiceDepartment service) {
@@ -37,7 +35,7 @@ public class RESTDepartment {
     }
     @GetMapping("/{id}/department/")
     public ResponseEntity<List<Department>> getAllDepartmentByIdOrg(@PathVariable("id") Long id){
-        List<Department> list = repository.getAllDepartmentByIdOrg(id);
+        List<Department> list = service.getAllDepartmentByIdOrg(id);
         return new ResponseEntity<>(list,HttpStatus.OK);
     }
 }

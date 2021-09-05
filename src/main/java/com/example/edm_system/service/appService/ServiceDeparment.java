@@ -47,4 +47,9 @@ public class ServiceDeparment implements IServiceDepartment {
     public List<Department> getAllDepartment() {
         return repository.findAll();
     }
+
+    @Override
+    public List<Department> getAllDepartmentByIdOrg(Long id) {
+        return repository.getAllDepartmentByIdOrg(id);
+    }
 }

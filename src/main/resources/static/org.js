@@ -8,28 +8,26 @@ OrgList.controller('orgListController', function ($scope, $http) {
     }, resp => {
         console.error(resp)
     })
-    $scope.getDepoByIdOrg = function (id) {
+    $scope.getDepartByIdOrg = function (id) {
         $http.get('http://localhost:8080/api/organization/' + id + '/department/').then(resp => {
             // нужно пройти циклом, найти  html по айдишкам и заполнить их от сюда
             $scope.listDepartment = resp.data
-            $scope.test($scope.listDepartment)
+            // $scope.test($scope.listDepartment)
             console.log($scope.listDepartment)
         }, resp => {
             console.error(resp)
         })
     }
-    $scope.test = function (listDepart) {
-        const container = $('#idDepart');
-        let html = ''
-        listDepart.forEach(deport => {
-            let buttonHtml = ` <div id="idDepart1" class="card card-body">${deport.id}</div>`
-            html += buttonHtml;
-            container.html(html);
-        })
-
-        // const html =  $('#idDepart').text('jnkjnkkjn')
-        console.log(html)
-    }
+    // $scope.test = function (listDepart) {
+    //     const container = $('#idDepart');
+    //     let html = ''
+    //     listDepart.forEach(deport => {
+    //         let buttonHtml = ` <div id="idDepart1" class="card card-body">${deport.id}</div>`
+    //         html += buttonHtml;
+    //         container.html(html);
+    //     })
+    //     console.log(html)
+    // }
 })
 
 
