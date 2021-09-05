@@ -1,10 +1,8 @@
 package com.example.edm_system.model;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Objects;
@@ -28,6 +26,7 @@ public class Organization {
     @OneToMany(fetch = FetchType.EAGER,cascade = {CascadeType.ALL})
     @JoinColumn(name = "organization_id")
     private Set<Department> department  = new HashSet<>();
+
 
     public void setDepartment(Department department) {
         this.department.add(department);

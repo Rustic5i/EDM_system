@@ -1,12 +1,12 @@
 package com.example.edm_system.service.appService;
 import com.example.edm_system.model.Task;
 import com.example.edm_system.repository.RepositoryTask;
-import com.example.edm_system.service.Iservice.ITaskService;
+import com.example.edm_system.service.Iservice.IServiceTask;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ServiceTask implements ITaskService {
+public class ServiceTask implements IServiceTask {
 
     private RepositoryTask repository;
 

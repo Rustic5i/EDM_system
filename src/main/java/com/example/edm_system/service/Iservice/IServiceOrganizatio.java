@@ -5,7 +5,7 @@ import com.example.edm_system.model.Organization;
 
 import java.util.List;
 
-public interface IOrganizatioService {
+public interface IServiceOrganizatio {
     Organization getOrganizationById(Long id);
 
     void removeOrganizationById(Long id);

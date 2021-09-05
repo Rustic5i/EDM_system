@@ -1,14 +1,13 @@
 package com.example.edm_system.service.appService;
 
-import com.example.edm_system.model.Department;
 import com.example.edm_system.model.Employee;
 import com.example.edm_system.repository.RepositoryEmployee;
-import com.example.edm_system.service.Iservice.IEmployeeService;
+import com.example.edm_system.service.Iservice.IServiceEmployee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ServiceEmployee implements IEmployeeService {
+public class ServiceEmployee implements IServiceEmployee {
 
     private RepositoryEmployee repository;
 

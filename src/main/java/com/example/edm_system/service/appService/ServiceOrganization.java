@@ -2,14 +2,14 @@ package com.example.edm_system.service.appService;
 
 import com.example.edm_system.model.Organization;
 import com.example.edm_system.repository.RepositoryOrganization;
-import com.example.edm_system.service.Iservice.IOrganizatioService;
+import com.example.edm_system.service.Iservice.IServiceOrganizatio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class ServiceOrganization implements IOrganizatioService {
+public class ServiceOrganization implements IServiceOrganizatio {
 
     private RepositoryOrganization repository;
 

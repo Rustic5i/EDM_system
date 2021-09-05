@@ -1,18 +1,20 @@
 package com.example.edm_system.service.appService;
 
 import com.example.edm_system.model.Department;
-import com.example.edm_system.repository.RepositoryDeportament;
-import com.example.edm_system.service.Iservice.IDepartmentService;
+import com.example.edm_system.repository.RepositoryDepartment;
+import com.example.edm_system.service.Iservice.IServiceDepartment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
-public class ServiceDeparment implements IDepartmentService {
+import java.util.List;
 
-    private RepositoryDeportament repository;
+@Service
+public class ServiceDeparment implements IServiceDepartment {
+
+    private RepositoryDepartment repository;
 
     @Autowired
-    public ServiceDeparment(RepositoryDeportament repository) {
+    public ServiceDeparment(RepositoryDepartment repository) {
         this.repository = repository;
     }
 
@@ -39,5 +41,10 @@ public class ServiceDeparment implements IDepartmentService {
     @Override
     public void updateDepartment(Department updateDepartment) {
         repository.save(updateDepartment);
+    }
+
+    @Override
+    public List<Department> getAllDepartment() {
+        return repository.findAll();
     }
 }
