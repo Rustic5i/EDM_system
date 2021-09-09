@@ -44,7 +44,7 @@ OrgList.controller('orgListController', function ($scope, $http) {
             html += buttonHtml;
             container.html(html);
         })
-        $scope.getListEmployee(2) //òåñò
+        $scope.getListEmployee(2) //òåñòwadwadaw
         console.log(html)
     }
 })
