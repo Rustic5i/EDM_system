@@ -19,6 +19,8 @@ public class ServiceDeparment implements IServiceDepartment {
         this.repository = repository;
     }
 
+   // findById()возвращает фактический объект
+   // getById() возвращает ссылку на сущность.
     @Override
     public Optional<Department> getDepartmentById(Long id) {
        // return repository.getById(id);
