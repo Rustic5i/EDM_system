@@ -10,10 +10,11 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin("http://localhost:63342/")
 @RestController
-@RequestMapping("/api/")
+@RequestMapping(value = {"/api/organization/","/api/"})
 public class RESTDepartment {
 
     private IServiceDepartment service;
@@ -23,22 +24,21 @@ public class RESTDepartment {
         this.service = service;
     }
 
+    @GetMapping("/department")
+    public ResponseEntity<List<Department>> getAllDepartment(){
+        List<Department> list = service.getAllDepartment();
+        return new ResponseEntity<>(list,HttpStatus.OK);
+    }
+
     @GetMapping("/department/{id}")
-    public ResponseEntity<Department> getDepartmentById(@PathVariable("id") Long id) {
-        Department department = service.getDepartmentById(id);
+    public ResponseEntity<Optional<Department>> getDepartmentById(@PathVariable("id") Long id) {
+        Optional<Department> department = service.getDepartmentById(id);
         return new ResponseEntity<>(department, HttpStatus.OK);
     }
 
-    @GetMapping("/department")
-    public ResponseEntity<List<Department>> getAllDepartmentByIdOrg(HttpServletRequest request) {
-        try {
-            String idOrganization = request.getParameter("idOrganization");
-            Long id =  Long.parseLong(idOrganization);
-            List<Department> list = service.getAllDepartmentByIdOrg(id);
-            return new ResponseEntity<>(list, HttpStatus.OK);
-        }catch (NumberFormatException e){
-            List<Department> list = service.getAllDepartment();
-            return new ResponseEntity<>(list, HttpStatus.OK);
-        }
+    @GetMapping("{id}/department")
+    public ResponseEntity<List<Department>> getAllDepartmentByIdOrg(@PathVariable Long id) {
+        List<Department> list = service.getAllDepartmentByIdOrg(id);
+        return new ResponseEntity<>(list, HttpStatus.OK);
     }
 }

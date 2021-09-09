@@ -5,8 +5,8 @@ import com.example.edm_system.repository.RepositoryOrganization;
 import com.example.edm_system.service.Iservice.IServiceOrganizatio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ServiceOrganization implements IServiceOrganizatio {
@@ -18,9 +18,15 @@ public class ServiceOrganization implements IServiceOrganizatio {
         this.repository = repository;
     }
 
+//    По сути, getOne - это операция отложенной загрузки. Таким образом,
+//    вы получаете только ссылку (прокси) на объект. Это означает,
+//    что доступ к БД фактически не осуществляется. Только когда вы вызываете
+//    его свойства, он будет запрашивать БД. findByID выполняет вызов «нетерпеливо» / немедленно,
+//    когда вы его вызываете, таким образом, у вас есть фактическая сущность полностью заполненной.
     @Override
-    public Organization getOrganizationById(Long id) {
-        return repository.getById(id);
+    public Optional<Organization> getOrganizationById(Long id) {
+      //  return repository.getById(id);
+        return repository.findById(id);
     }
 
     @Override

@@ -10,7 +10,7 @@ OrgList.controller('orgListController', function ($scope, $http) {
     })
 
     $scope.getDepartByIdOrg = function (idOrganization) {
-        $http.get('http://localhost:8080/api/department?idOrganization='+idOrganization).then(resp => {
+        $http.get('http://localhost:8080/api/organization/'+idOrganization+'/department').then(resp => {
             // нужно пройти циклом, найти  html по айдишкам и заполнить их от сюда
             $scope.listDepartment = resp.data
             $scope.listButtonOrganization($scope.listDepartment,idOrganization)
@@ -21,7 +21,7 @@ OrgList.controller('orgListController', function ($scope, $http) {
     }
 
     $scope.getListEmployee = function (idDepartment){
-        $http.get('http://localhost:8080/api/employee?IdDepartment='+idDepartment).then(resp=>{
+        $http.get('http://localhost:8080/api/organization/department/'+idDepartment+'/employee').then(resp=>{
             $scope.lestEmployee = resp.data
             console.log($scope.lestEmployee)
         },resp =>{
@@ -44,7 +44,7 @@ OrgList.controller('orgListController', function ($scope, $http) {
             html += buttonHtml;
             container.html(html);
         })
-        $scope.getListEmployee(11) //тестwadwadaw
+        $scope.getListEmployee(1) //тестwadwadaw
         console.log(html)
     }
 })

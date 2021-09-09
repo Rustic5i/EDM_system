@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
@@ -28,8 +29,8 @@ public class RESTOrganization {
     }
 
     @GetMapping("/organization/{id}")
-    public ResponseEntity<Organization> getDepartmentById(@PathVariable("id") Long id){
-        Organization organization = service.getOrganizationById(id);
+    public ResponseEntity<Optional<Organization>> getDepartmentById(@PathVariable("id") Long id){
+        Optional<Organization> organization = service.getOrganizationById(id);
         return new ResponseEntity<>(organization,HttpStatus.OK);
     }
 }

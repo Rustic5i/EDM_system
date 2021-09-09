@@ -1,12 +1,12 @@
 package com.example.edm_system.service.Iservice;
 
 import com.example.edm_system.model.Department;
-import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface IServiceDepartment {
-    Department getDepartmentById(Long id);
+    Optional<Department> getDepartmentById(Long id);
 
     void removeDepartmentById(Long id);
 

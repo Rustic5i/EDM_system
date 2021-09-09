@@ -16,7 +16,8 @@ import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/")
+@RequestMapping(value = {"/api/", "/api/organization/{id}/department",
+        "/api/organization/department"})
 public class RESTEmployee {
     private ServiceEmployee service;
 
@@ -26,21 +27,14 @@ public class RESTEmployee {
     }
 
     @GetMapping("/employee/{id}")
-    public ResponseEntity<Employee> getEmployee(@PathVariable("id") Long id){
+    public ResponseEntity<Employee> getEmployee(@PathVariable("id") Long id) {
         Employee employee = service.getEmployeeById(id);
         return new ResponseEntity<>(employee, HttpStatus.OK);
     }
 
-    @GetMapping("/employee")
-    public ResponseEntity<List<Employee>> getListEmployeeByIdDepartment(HttpServletRequest request){
-        try {
-            String IdDepartment = request.getParameter("IdDepartment");
-            Long id =  Long.parseLong(IdDepartment);
-            List<Employee> employees = service.findByEmployeeByIdDepartment(id);
-            return new ResponseEntity<>(employees, HttpStatus.OK);
-        }catch (NumberFormatException e){
-            List<Employee> employees = service.getAllEmployee();
-            return new ResponseEntity<>(employees, HttpStatus.OK);
-        }
+    @GetMapping("/{IdDepartment}/employee")
+    public ResponseEntity<List<Employee>> getListEmployeeByIdDepartment(@PathVariable Long IdDepartment) {
+        List<Employee> employees = service.findByEmployeeByIdDepartment(IdDepartment);
+        return new ResponseEntity<>(employees, HttpStatus.OK);
     }
 }

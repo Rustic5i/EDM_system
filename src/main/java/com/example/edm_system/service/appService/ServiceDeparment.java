@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ServiceDeparment implements IServiceDepartment {
@@ -19,8 +20,9 @@ public class ServiceDeparment implements IServiceDepartment {
     }
 
     @Override
-    public Department getDepartmentById(Long id) {
-        return repository.getById(id);
+    public Optional<Department> getDepartmentById(Long id) {
+       // return repository.getById(id);
+        return repository.findById(id);
     }
 
     @Override
