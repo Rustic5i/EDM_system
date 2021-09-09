@@ -6,6 +6,8 @@ import com.example.edm_system.service.Iservice.IServiceEmployee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ServiceEmployee implements IServiceEmployee {
 
@@ -39,5 +41,15 @@ public class ServiceEmployee implements IServiceEmployee {
     @Override
     public void updateEmployee(Employee updateEmployee) {
         repository.save(updateEmployee);
+    }
+
+    @Override
+    public List<Employee> findByEmployeeByIdDepartment(Long IdDepartment) {
+        return repository.findByIdDepartment(IdDepartment);
+    }
+
+    @Override
+    public List<Employee> getAllEmployee() {
+        return repository.findAll();
     }
 }

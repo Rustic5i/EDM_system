@@ -1,6 +1,5 @@
 package com.example.edm_system.controller;
 
-import com.example.edm_system.model.Department;
 import com.example.edm_system.model.Organization;
 import com.example.edm_system.service.Iservice.IServiceOrganizatio;
 import org.springframework.beans.factory.annotation.Autowired;
