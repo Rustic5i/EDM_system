@@ -10,27 +10,89 @@
     <title>Index</title>
 </head>
 <body ng-app="OrgList">
-<div class="d-flex h-100 d-inline-block" ng-controller="orgListController">
-    <div class="col-2">
-        <div class="nav nav-pills mb-3" id="pills-tab">
-            <div class="nav flex-column nav-item me-3" id="v-pills-tab">
-                <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#allOrg">
-                    Все организации
-                </button>
-            </div>
-            <div class="tab-content" id="v-pills-tabContent">
-                <div class="collapse" id="allOrg">
-                    <div class="card card-body">
-                        <div>
-                            <div class="p-1 " id="orgs" ng-repeat="org in listOrg">
-                                <button ng-click="getDepartByIdOrg(org.id)" class="btn btn-primary" type="button"
-                                        data-bs-toggle="collapse"
-                                        data-bs-target="#department{{org.id}}" style="width: 190px">
-                                    {{org.nameOrganization}}
+<div class="container-fluid vh-100">
+    <div class="row">
+        <div class="col-2 border vh-100" ng-controller="orgListController">
+            <div>
+                <div class="nav nav-pills" id="pills-tab">
+                    <div class="nav flex-column nav-item me-3" id="v-pills-tab">
+                        <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#allOrg">
+                            Все организации
+                        </button>
+                    </div>
+                    <div class="tab-content" id="v-pills-tabContent">
+                        <div class="collapse" id="allOrg">
+                            <div class="card card-body">
+                                <div>
+                                    <div class="p-1 " id="orgs" ng-repeat="org in listOrg">
+                                        <button ng-click="getDepartByIdOrg(org.id)" class="btn btn-primary"
+                                                type="button"
+                                                data-bs-toggle="collapse"
+                                                data-bs-target="#department{{org.id}}" style="width: 190px">
+                                            {{org.nameOrganization}}
+                                        </button>
+                                        <div class="collapse" id="department{{org.id}}"
+                                             style="width: 190px">
+                                            <div id="idDepart{{org.id}}" class="card card-body">Name Department</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!------------------------  Task------------------------------------------------               -->
+                    <div class="nav nav-pills" id="task-tab" ng-controller="TaskListController">
+                        <div class="nav flex-column nav-item" id="v-task-tab" style="margin-top: 10px">
+                            <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#task"
+                                    aria-expanded="false" aria-controls="collapseExample">
+                                Поручения
+                            </button>
+                        </div>
+                        <div class="tab-content" id="v-task-tabContent">
+                            <div class="collapse tab-content container collapse show" id="task"
+                                 style="margin-top: 10px">
+                                <!--      -----------------------------  Все поручения --------------------------->
+                                <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#idAllTask" aria-expanded="false"
+                                        aria-controls="collapseExample"
+                                        style="margin-top: 10px">
+                                    Все поручения
                                 </button>
-                                <div  class="collapse" id="department{{org.id}}"
-                                     style="width: 190px">
-                                    <div id="idDepart{{org.id}}" class="card card-body">Name Department</div>
+                                <div class="collapse tab-content container collapse show">
+                                    <div class="collapse" id="idAllTask" ng-repeat="task in listTask">
+                                        <button class="btn btn-success" style="margin-top: 10px">
+                                            {{task.objectTask}}
+                                        </button>
+                                    </div>
+                                </div>
+                                <!--      --------------------------- Мои поручения --------------------------->
+                                <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#idTaskByAuthor" aria-expanded="false"
+                                        aria-controls="collapseExample" style="margin-top: 10px">
+                                    Мои поручения
+                                </button>
+                                <div class="collapse tab-content container collapse show">
+                                    <div class="collapse" id="idTaskByAuthor" ng-repeat="task in listTaskByAuthor">
+                                        <button class="btn btn-success">
+                                            {{task.objectTask}}
+                                        </button>
+                                    </div>
+                                </div>
+                                <!--        ------------------------- Поручения мне ---------------------------->
+                                <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#idTaskByExecutors" aria-expanded="false"
+                                        aria-controls="collapseExample" style="margin-top: 10px">
+                                    Поручения мне
+                                </button>
+                                <div class="collapse tab-content container collapse show">
+                                    <div class="collapse" id="idTaskByExecutors"
+                                         ng-repeat="task in listTaskByExecutors">
+                                        <button class="btn btn-success" style="margin-top: 10px">
+                                            {{task.objectTask}}
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -38,17 +100,66 @@
                 </div>
             </div>
         </div>
+        <div class="tab-content col-sm-9 p-3" id="windows" ng-controller="orgListController">
+            <div class="border vh-100">
+                <div class="tab-content" id="v-pills-tabContent1">
+                    <div id="idWindowOrganization">.1..
+                        <div class="bg-white w-100 p-3" >
+                            <div class="col-md-5 mx-auto">
+                                <form ng-repeat="org in listOrg">
+                                    <div class="text-center">
+                                        <div>
+                                            <label for="IdNameOrganization"><b>Наименование организации</b></label>
+                                            <input th:name="id" th:type="text"
+                                                   class="form-control" id="IdNameOrganization" disabled/>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="IdPhysicalAddress" class="form-label"><b>Физический адрес</b></label>
+                                            <input th:name="firstName" type="text"
+                                                   class="form-control" id="IdPhysicalAddress"
+                                                   disabled>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="IdJuridicalAddress"
+                                                   class="form-label"><b>Юридический адрес</b></label>
+                                            <input th:name="lastName" type="text"
+                                                   class="form-control" id="IdJuridicalAddress"
+                                                   disabled>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="IdManager"
+                                                   class="form-label"><b>Руководитель</b></label>
+                                            <input th:name="age" type="number"
+                                                   class="form-control" id="IdManager"
+                                                   disabled>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <div>
+                                                <button onclick="closeWindowsOrganization()" type="button"
+                                                        class="btn btn-secondary">Close
+                                                </button>
+                                            </div>
+                                            <div>
+                                                <button onclick="deletOrganizationById($('#DeleteId').val())" type="submit"
+                                                        class="btn bg-danger text-white">Delete
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div>..2.</div>
+                    <div>..3.</div>
+                    <div>..4.</div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="tab-content col-8 p-3">
-        <p>WEDacsacsacsacsacascsacWE</p>
-    </div>
-<!----------------------------TEST-->
-    <div>
-
-    </div>
-<!--   ------------------------TEST-->
-    <div  class="collapse" id="ListEmpoloyee" style="width: 190px">lknlknl</div>
 </div>
+</div>
+
 <script
         src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
