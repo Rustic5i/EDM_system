@@ -120,6 +120,7 @@ function fillModelDeletUserById(id){
         $('#IdJuridicalAddress').val(`${user.firstName}`)
         $('#IdPhysicalAddress').val(`${user.lastName}`)
         $('#IdManager').val(`${user.age}`)
+
         viewOpenModalDeleteUser()
     })
 }
